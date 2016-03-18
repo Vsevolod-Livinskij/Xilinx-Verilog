@@ -27,7 +27,8 @@ module I2C_testbench();
     //Output
     wire i2c_sda;
     wire i2c_scl;
-
+    wire i2c_clk;
+    
     initial begin
         clk = 0;
         forever begin
@@ -39,10 +40,17 @@ module I2C_testbench();
         reset <= 1;
         #10
         reset <= 0;
+        #1000;
+        //$finish;
     end
 
+    I2C_clk_div #(.DELAY(5000)) clk_div (
+        .ref_clk(clk),
+        .i2c_clk(i2c_clk)
+        );
+
     I2C_master uut (
-        .clk(clk),
+        .clk(i2c_clk),
         .reset(reset),
         .i2c_sda(i2c_sda),
         .i2c_scl(i2c_scl)
