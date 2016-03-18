@@ -28,18 +28,21 @@ module I2C_master(
     input [7:0] sub,
     input [7:0] data,
     output wire ready,
-    output reg i2c_sda,
-    output wire i2c_scl
+    inout wire i2c_sda,
+    inout wire i2c_scl
     );
     
 reg [127:0] state = "Idle";
-reg [6:0] saved_addr = 7'b1101000;
-reg [7:0] saved_sub = 8'h20;
-reg [7:0] saved_data = 8'h0F;
+reg [6:0] saved_addr = 0;//7'b1101000;
+reg [7:0] saved_sub = 0;//8'h20;
+reg [7:0] saved_data = 0;//8'h0F;
 reg [7:0] count = 0;
 reg i2c_scl_enable = 0;
-assign i2c_scl = (i2c_scl_enable == 0) ? 1 : ~clk;
+assign i2c_scl = ((i2c_scl_enable == 0) ? 1 : ~clk);// ? 1'bZ : 0;
 assign ready = (reset == 0) && (state == "Idle");
+
+reg i2c_sda_reg = 1;
+assign i2c_sda = (i2c_sda_reg ? 1'bZ : 0);
 
 always @(negedge clk)
 begin
@@ -60,18 +63,18 @@ end
 always @(posedge clk)
 begin
     if (reset) begin
-        i2c_sda <= 1;
+        i2c_sda_reg <= 1;
         state <= "Idle";
         count <= 0;
-        addr <= 0;
-        init_sub <= 0;
-        init_val <= 0;
+        saved_addr <= 0;
+        saved_sub <= 0;
+        saved_data <= 0;
     end
     else begin
         case (state)
 
             "Idle" : begin
-                i2c_sda <= 1;
+                i2c_sda_reg <= 1;
                 state <= start ? "Start" : "Idle";
                 saved_addr <= start ? addr : saved_addr;
                 saved_sub <= start ? sub : saved_sub;
@@ -79,13 +82,13 @@ begin
             end
             
             "Start" : begin
-                i2c_sda <= 0;
+                i2c_sda_reg <= 0;
                 state <= "TR_Addr";
                 count <= 7'd6;
             end
             
             "TR_Addr" : begin
-                i2c_sda <= saved_addr [count];
+                i2c_sda_reg <= saved_addr [count];
                 if (count == 0) 
                     state <= "TR_RW";
                 else
@@ -93,18 +96,17 @@ begin
             end
             
             "TR_RW" : begin
-                i2c_sda <= 1;
+                i2c_sda_reg <= 0; //TODO: Should be 1;
                 state <= "WSAK";
             end
             
             "WSAK" : begin
-                // TODO: Implement SAK
                 state <= "TR_Sub";
                 count <= 7'd7;
             end
             
             "TR_Sub" : begin
-                i2c_sda <= saved_sub [count];
+                i2c_sda_reg <= saved_sub [count];
                 if (count == 0) 
                     state <= "WSAK2";
                 else
@@ -112,13 +114,12 @@ begin
             end
             
             "WSAK2" : begin
-                // TODO: Implement SAK
                 state <= "TR_Data";
                 count <= 7'd7;
             end
             
             "TR_Data" : begin
-                i2c_sda <= saved_data [count];
+                i2c_sda_reg <= saved_data [count];
                 if (count == 0) 
                     state <= "WSAK3";
                 else
@@ -126,12 +127,11 @@ begin
             end
 
             "WSAK3" : begin
-                // TODO: Implement SAK
                 state <= "Stop";
             end
             
             "Stop" : begin
-                i2c_sda <= 1;
+                i2c_sda_reg <= 1;
                 state <= "Stop";
             end
             
