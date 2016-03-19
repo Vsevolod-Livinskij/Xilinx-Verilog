@@ -38,53 +38,31 @@ module sandbox
     input wire BTNU
     );
     
-    wire MISO;
-    wire MOSI;
-    wire SS;
-    wire SCLK;
+    reg [6:0] addr = 7'b1101000;
+    reg [7:0] sub = 8'h20;
+    reg [7:0] data = 8'h0F;
     
-    reg SS_REG = 1'b0;
-    reg SCLK_REG = 1'b0;
-    assign JA[2] = SS_REG;
-    assign JA[3] = SCLK_REG;
+    wire i2c_clk;
     
-    always @(posedge GCLK) begin
-        SS_REG <= SS;
-        SCLK_REG <= SCLK;
-    end
+    I2C_clk_div #(.DELAY(50)) clk_div (
+    .ref_clk(GCLK),
+    .i2c_clk(i2c_clk)
+    );
     
-    //assign JA[3] = SCLK;
-   
-    SPI #(.m(15), .Tbit(100)) spi
-        (
-        // External interfaces
-        .str0(OLED_S0),
-        .str1(OLED_S1),
-        .str2(OLED_S2),
-        .str3(OLED_S3),
-        .GCLK(GCLK),
-        .RST(BTND),
-        .SW(SW),
-        // Transmission start switch
-        .st(BTNC),
-        // SPI Master bus
-        //.MASTER_MISO(MISO),
-        //.MASTER_MOSI(MOSI),
-        .MASTER_SS(SS),
-        .MASTER_SCLK(SCLK),
-        .MASTER_MISO(JB[0]),
-        .MASTER_MOSI(JA[1]),
-        //.MASTER_SS(JA[2]),
-        //.MASTER_SCLK(JA[3]),
-        // SPI Slave bus
-        //.SLAVE_MISO(MISO),
-        //.SLAVE_MOSI(MOSI),
-        .SLAVE_SS(SS),
-        .SLAVE_SCLK(SCLK),
-        .SLAVE_MOSI(JB[1]),
-        .SLAVE_MISO(JA[0])
-        //.SLAVE_SS(JB[2])
-        //.SLAVE_SCLK(JB[3])
-        );
-
+    assign JA[0] = i2c_clk;
+    wire ready;
+    assign LD[0] = ready;
+    assign JA[6] = ready;
+    
+    I2C_master uut (
+        .clk(i2c_clk),
+        .reset(BTNC),
+        .start(BTND),
+        .addr(addr),
+        .sub(sub),
+        .data(data),
+        .ready(ready),
+        .i2c_sda(JA[5]),
+        .i2c_scl(JA[4])
+    );
 endmodule

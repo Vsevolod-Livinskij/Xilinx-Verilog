@@ -22,11 +22,11 @@
 
 module I2C_clk_div(
     input wire ref_clk,
-    output reg i2c_clk
+    (* mark_debug = "true" *) output reg i2c_clk
     );
 
 parameter DELAY = 5000;
-reg [15:0] count = 0;
+(* mark_debug = "true" *) reg [15:0] count = 0;
 
 initial begin
     count <= 0;

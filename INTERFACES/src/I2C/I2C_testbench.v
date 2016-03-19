@@ -30,9 +30,9 @@ module I2C_testbench();
     reg [7:0] data;
     //Output
     wire i2c_sda;
-    //pullup(i2c_sda);
+    pullup(i2c_sda);
     wire i2c_scl;
-    //pullup(i2c_scl);
+    pullup(i2c_scl);
     wire i2c_clk;
     wire ready;
     
