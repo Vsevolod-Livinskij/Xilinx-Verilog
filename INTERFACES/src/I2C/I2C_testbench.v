@@ -29,8 +29,11 @@ module I2C_testbench();
     reg [7:0] sub;
     reg [7:0] data;
     //Output
-    wire i2c_sda;
-    pullup(i2c_sda);
+    wire i2c_sda_in;
+    pullup(i2c_sda_in);
+    wire i2c_sda_out;
+    pullup(i2c_sda_out);
+    wire i2c_sda_out_mode;
     wire i2c_scl;
     pullup(i2c_scl);
     wire i2c_clk;
@@ -70,8 +73,9 @@ module I2C_testbench();
         .sub(sub),
         .data(data),
         .ready(ready),
-        .i2c_sda(i2c_sda),
+        .i2c_sda_out(i2c_sda_out),
+        .i2c_sda_in(i2c_sda_in),
+        .i2c_sda_out_mode(i2c_sda_out_mode),
         .i2c_scl(i2c_scl)
     );
-
 endmodule

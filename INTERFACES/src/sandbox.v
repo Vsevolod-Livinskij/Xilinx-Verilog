@@ -29,7 +29,7 @@ module sandbox
     input wire GCLK,
     output wire [7:0] LD,
     input wire [7:0] SW,
-    output wire [7:0] JA,
+    inout wire [7:0] JA,
     input wire [7:0] JB,
     input wire BTNC,
     input wire BTND,
@@ -51,8 +51,12 @@ module sandbox
     
     assign JA[0] = i2c_clk;
     wire ready;
-    assign LD[0] = ready;
-    assign JA[6] = ready;
+    assign JA[7] = ready;
+    
+    wire i2c_sda_in;
+    wire i2c_sda_out;
+    wire i2c_sda_out_mode;
+    wire i2c_scl;
     
     I2C_master uut (
         .clk(i2c_clk),
@@ -62,7 +66,16 @@ module sandbox
         .sub(sub),
         .data(data),
         .ready(ready),
-        .i2c_sda(JA[5]),
-        .i2c_scl(JA[4])
+        .i2c_sda_in(i2c_sda_in),
+        .i2c_sda_out(i2c_sda_out),
+        .i2c_sda_out_mode(i2c_sda_out_mode),
+        .i2c_scl(i2c_scl)
     );
+    
+    assign JA[1] = i2c_sda_in;
+    assign JA[2] = i2c_sda_out;
+    assign JA[3] = i2c_sda_out_mode;
+    assign JA[4] = i2c_scl ? 1'bZ : 0;
+    assign JA[5] = i2c_sda_out_mode ? (i2c_sda_out ? 1'bZ : 0) : 1'bZ;
+    assign JA[6] = i2c_scl;
 endmodule
