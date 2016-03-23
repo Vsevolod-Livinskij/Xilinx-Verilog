@@ -29,7 +29,7 @@ module sandbox
     input wire GCLK,
     output wire [7:0] LD,
     input wire [7:0] SW,
-    inout wire [7:0] JA,
+    (* mark_debug = "true" *) inout wire [7:0] JA,
     input wire [7:0] JB,
     input wire BTNC,
     input wire BTND,
@@ -45,18 +45,30 @@ module sandbox
     wire i2c_clk;
     
     I2C_clk_div #(.DELAY(50)) clk_div (
-    .ref_clk(GCLK),
-    .i2c_clk(i2c_clk)
-    );
+        .ref_clk(GCLK),
+        .i2c_clk(i2c_clk)
+        );
     
     assign JA[0] = i2c_clk;
     wire ready;
     assign JA[7] = ready;
+    wire done;
+    assign JA [6] = done;
     
-    wire i2c_sda_in;
-    wire i2c_sda_out;
-    wire i2c_sda_out_mode;
-    wire i2c_scl;
+    wire i2c_scl_out_wire;
+    //assign JA [4] = i2c_scl_out_wire ? 1'bZ : 0;
+    assign JA [4] = i2c_scl_out_wire;
+    
+    (* mark_debug = "true" *) wire i2c_sda_in_wire;
+    assign i2c_sda_in_wire = JA[5];
+    (* mark_debug = "true" *) wire i2c_sda_out_wire;
+    (* mark_debug = "true" *) wire i2c_sda_out_mode_wire;
+    //assign JA[5] = i2c_sda_out_mode_wire ? (i2c_sda_out_wire ? 1'bZ : 0) : 1'bZ;
+    assign JA[5] = i2c_sda_out_wire;
+    
+    assign JA [1] = i2c_sda_out_wire;
+    assign JA [2] = i2c_sda_out_mode_wire;
+    assign JA [3] = i2c_scl_out_wire;
     
     I2C_master uut (
         .clk(i2c_clk),
@@ -66,16 +78,11 @@ module sandbox
         .sub(sub),
         .data(data),
         .ready(ready),
-        .i2c_sda_in(i2c_sda_in),
-        .i2c_sda_out(i2c_sda_out),
-        .i2c_sda_out_mode(i2c_sda_out_mode),
-        .i2c_scl(i2c_scl)
+        .i2c_sda_in(i2c_sda_in_wire),
+        .i2c_sda_out(i2c_sda_out_wire),
+        .i2c_sda_out_mode(i2c_sda_out_mode_wire),
+        .i2c_scl(i2c_scl_out_wire),
+        .done(done)
     );
-    
-    assign JA[1] = i2c_sda_in;
-    assign JA[2] = i2c_sda_out;
-    assign JA[3] = i2c_sda_out_mode;
-    assign JA[4] = i2c_scl ? 1'bZ : 0;
-    assign JA[5] = i2c_sda_out_mode ? (i2c_sda_out ? 1'bZ : 0) : 1'bZ;
-    assign JA[6] = i2c_scl;
+
 endmodule

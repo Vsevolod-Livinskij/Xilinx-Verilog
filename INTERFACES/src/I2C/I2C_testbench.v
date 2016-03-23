@@ -30,14 +30,15 @@ module I2C_testbench();
     reg [7:0] data;
     //Output
     wire i2c_sda_in;
-    pullup(i2c_sda_in);
+    pulldown(i2c_sda_in);
     wire i2c_sda_out;
-    pullup(i2c_sda_out);
+    //pullup(i2c_sda_out);
     wire i2c_sda_out_mode;
     wire i2c_scl;
-    pullup(i2c_scl);
+    //pullup(i2c_scl);
     wire i2c_clk;
     wire ready;
+    wire done;
     
     initial begin
         clk = 0;
@@ -60,7 +61,7 @@ module I2C_testbench();
         //$finish;
     end
 
-    I2C_clk_div #(.DELAY(5000)) clk_div (
+    I2C_clk_div #(.DELAY(1000)) clk_div (
         .ref_clk(clk),
         .i2c_clk(i2c_clk)
         );
@@ -76,6 +77,7 @@ module I2C_testbench();
         .i2c_sda_out(i2c_sda_out),
         .i2c_sda_in(i2c_sda_in),
         .i2c_sda_out_mode(i2c_sda_out_mode),
-        .i2c_scl(i2c_scl)
+        .i2c_scl(i2c_scl),
+        .done(done)
     );
 endmodule
