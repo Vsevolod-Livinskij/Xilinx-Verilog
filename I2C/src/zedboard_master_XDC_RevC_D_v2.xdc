@@ -390,116 +390,142 @@ connect_debug_port u_ila_0/probe1 [get_nets [list {SANDBOX/uut/count[0]} {SANDBO
 
 
 
-create_debug_core u_ila_0_0 ila
-set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
-set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
-set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
-set_property C_DATA_DEPTH 8192 [get_debug_cores u_ila_0_0]
-set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
-set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
-set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
-set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
-set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
-connect_debug_port u_ila_0_0/clk [get_nets [list GCLK_IBUF_BUFG]]
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe0]
-set_property port_width 6 [get_debug_ports u_ila_0_0/probe0]
 connect_debug_port u_ila_0_0/probe0 [get_nets [list {SANDBOX/JA[0]} {SANDBOX/JA[1]} {SANDBOX/JA[2]} {SANDBOX/JA[3]} {SANDBOX/JA[5]} {SANDBOX/JA[6]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe1]
-set_property port_width 8 [get_debug_ports u_ila_0_0/probe1]
 connect_debug_port u_ila_0_0/probe1 [get_nets [list {SANDBOX/uut/tr_count[0]} {SANDBOX/uut/tr_count[1]} {SANDBOX/uut/tr_count[2]} {SANDBOX/uut/tr_count[3]} {SANDBOX/uut/tr_count[4]} {SANDBOX/uut/tr_count[5]} {SANDBOX/uut/tr_count[6]} {SANDBOX/uut/tr_count[7]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe2]
-set_property port_width 4 [get_debug_ports u_ila_0_0/probe2]
 connect_debug_port u_ila_0_0/probe2 [get_nets [list {SANDBOX/uut/state[0]} {SANDBOX/uut/state[1]} {SANDBOX/uut/state[2]} {SANDBOX/uut/state[3]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe3]
-set_property port_width 3 [get_debug_ports u_ila_0_0/probe3]
 connect_debug_port u_ila_0_0/probe3 [get_nets [list {SANDBOX/uut/state_wire[0]} {SANDBOX/uut/state_wire[1]} {SANDBOX/uut/state_wire[3]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe4]
-set_property port_width 2 [get_debug_ports u_ila_0_0/probe4]
 connect_debug_port u_ila_0_0/probe4 [get_nets [list {SANDBOX/uut/st_count_enable[0]} {SANDBOX/uut/st_count_enable[1]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe5]
-set_property port_width 2 [get_debug_ports u_ila_0_0/probe5]
 connect_debug_port u_ila_0_0/probe5 [get_nets [list {SANDBOX/uut/st_count[0]} {SANDBOX/uut/st_count[1]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe6]
-set_property port_width 16 [get_debug_ports u_ila_0_0/probe6]
 connect_debug_port u_ila_0_0/probe6 [get_nets [list {SANDBOX/clk_div/count[0]} {SANDBOX/clk_div/count[1]} {SANDBOX/clk_div/count[2]} {SANDBOX/clk_div/count[3]} {SANDBOX/clk_div/count[4]} {SANDBOX/clk_div/count[5]} {SANDBOX/clk_div/count[6]} {SANDBOX/clk_div/count[7]} {SANDBOX/clk_div/count[8]} {SANDBOX/clk_div/count[9]} {SANDBOX/clk_div/count[10]} {SANDBOX/clk_div/count[11]} {SANDBOX/clk_div/count[12]} {SANDBOX/clk_div/count[13]} {SANDBOX/clk_div/count[14]} {SANDBOX/clk_div/count[15]}]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe7]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
 connect_debug_port u_ila_0_0/probe7 [get_nets [list SANDBOX/uut/clk]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe8]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
 connect_debug_port u_ila_0_0/probe8 [get_nets [list SANDBOX/uut/dbg_clk]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe9]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
 connect_debug_port u_ila_0_0/probe9 [get_nets [list SANDBOX/uut/done]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe10]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
 connect_debug_port u_ila_0_0/probe10 [get_nets [list SANDBOX/uut/done_reg]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe11]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
 connect_debug_port u_ila_0_0/probe11 [get_nets [list SANDBOX/clk_div/i2c_clk]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe12]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
 connect_debug_port u_ila_0_0/probe12 [get_nets [list SANDBOX/uut/i2c_scl]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe13]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
 connect_debug_port u_ila_0_0/probe13 [get_nets [list SANDBOX/uut/i2c_scl_enable]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe14]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe14]
 connect_debug_port u_ila_0_0/probe14 [get_nets [list SANDBOX/uut/i2c_scl_reg]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe15]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe15]
 connect_debug_port u_ila_0_0/probe15 [get_nets [list SANDBOX/uut/i2c_sda_in]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe16]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe16]
 connect_debug_port u_ila_0_0/probe16 [get_nets [list SANDBOX/uut/i2c_sda_out]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe17]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe17]
 connect_debug_port u_ila_0_0/probe17 [get_nets [list SANDBOX/uut/i2c_sda_out_mode]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe18]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe18]
 connect_debug_port u_ila_0_0/probe18 [get_nets [list SANDBOX/uut/i2c_sda_out_mode_reg]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe19]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe19]
 connect_debug_port u_ila_0_0/probe19 [get_nets [list SANDBOX/uut/i2c_sda_reg]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe20]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe20]
 connect_debug_port u_ila_0_0/probe20 [get_nets [list SANDBOX/uut/out_clk]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe21]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe21]
 connect_debug_port u_ila_0_0/probe21 [get_nets [list SANDBOX/uut/ready]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe22]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe22]
 connect_debug_port u_ila_0_0/probe22 [get_nets [list SANDBOX/uut/reset]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe23]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe23]
 connect_debug_port u_ila_0_0/probe23 [get_nets [list SANDBOX/uut/start]]
-create_debug_port u_ila_0_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0_0/probe24]
-set_property port_width 1 [get_debug_ports u_ila_0_0/probe24]
 connect_debug_port u_ila_0_0/probe24 [get_nets [list SANDBOX/uut/valid]]
+
+create_debug_core u_ila_0 ila
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_DATA_DEPTH 8192 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list GCLK_IBUF_BUFG]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe0]
+set_property port_width 8 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {uut/tr_count[0]} {uut/tr_count[1]} {uut/tr_count[2]} {uut/tr_count[3]} {uut/tr_count[4]} {uut/tr_count[5]} {uut/tr_count[6]} {uut/tr_count[7]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe1]
+set_property port_width 4 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list {uut/state[0]} {uut/state[1]} {uut/state[2]} {uut/state[3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe2]
+set_property port_width 4 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {uut/state_wire[0]} {uut/state_wire[1]} {uut/state_wire[2]} {uut/state_wire[3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe3]
+set_property port_width 2 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list {uut/st_count_enable[0]} {uut/st_count_enable[1]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe4]
+set_property port_width 2 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list {uut/st_count[0]} {uut/st_count[1]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe5]
+set_property port_width 16 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {i2c_clk_div/count[0]} {i2c_clk_div/count[1]} {i2c_clk_div/count[2]} {i2c_clk_div/count[3]} {i2c_clk_div/count[4]} {i2c_clk_div/count[5]} {i2c_clk_div/count[6]} {i2c_clk_div/count[7]} {i2c_clk_div/count[8]} {i2c_clk_div/count[9]} {i2c_clk_div/count[10]} {i2c_clk_div/count[11]} {i2c_clk_div/count[12]} {i2c_clk_div/count[13]} {i2c_clk_div/count[14]} {i2c_clk_div/count[15]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe6]
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list uut/clk]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe7]
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list uut/dbg_clk]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe8]
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list uut/done]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe9]
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list uut/done_reg]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe10]
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list i2c_clk_div/i2c_clk]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe11]
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list uut/i2c_scl]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe12]
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list uut/i2c_scl_enable]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe13]
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list uut/i2c_scl_enable_wire]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe14]
+set_property port_width 1 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list uut/i2c_scl_reg]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe15]
+set_property port_width 1 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list uut/i2c_sda_in]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe16]
+set_property port_width 1 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list uut/i2c_sda_out]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe17]
+set_property port_width 1 [get_debug_ports u_ila_0/probe17]
+connect_debug_port u_ila_0/probe17 [get_nets [list uut/i2c_sda_out_mode]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe18]
+set_property port_width 1 [get_debug_ports u_ila_0/probe18]
+connect_debug_port u_ila_0/probe18 [get_nets [list uut/i2c_sda_out_mode_reg]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe19]
+set_property port_width 1 [get_debug_ports u_ila_0/probe19]
+connect_debug_port u_ila_0/probe19 [get_nets [list uut/i2c_sda_reg]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe20]
+set_property port_width 1 [get_debug_ports u_ila_0/probe20]
+connect_debug_port u_ila_0/probe20 [get_nets [list uut/out_clk]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe21]
+set_property port_width 1 [get_debug_ports u_ila_0/probe21]
+connect_debug_port u_ila_0/probe21 [get_nets [list uut/ready]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe22]
+set_property port_width 1 [get_debug_ports u_ila_0/probe22]
+connect_debug_port u_ila_0/probe22 [get_nets [list uut/reset]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe23]
+set_property port_width 1 [get_debug_ports u_ila_0/probe23]
+connect_debug_port u_ila_0/probe23 [get_nets [list uut/start]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe24]
+set_property port_width 1 [get_debug_ports u_ila_0/probe24]
+connect_debug_port u_ila_0/probe24 [get_nets [list uut/valid]]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
 set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]

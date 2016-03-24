@@ -49,15 +49,20 @@ module sandbox
         .i2c_clk(i2c_clk)
         );
     
-    assign JA[0] = i2c_clk;
+    wire i2c_clk_dbg;
+    assign JA [0] = i2c_clk_dbg;
+    assign JA [1] = i2c_clk;
+    //assign JA[0] = i2c_clk;
     wire ready;
-    assign JA[7] = ready;
+    //assign JA[7] = ready;
     wire done;
-    assign JA [6] = done;
+    assign JA[7] = done;
     
     wire i2c_scl_out_wire;
+    wire i2c_scl_enable_wire;
     //assign JA [4] = i2c_scl_out_wire ? 1'bZ : 0;
     assign JA [4] = i2c_scl_out_wire;
+    assign JA [3] = i2c_scl_enable_wire;
     
     (* mark_debug = "true" *) wire i2c_sda_in_wire;
     assign i2c_sda_in_wire = JA[5];
@@ -66,9 +71,14 @@ module sandbox
     //assign JA[5] = i2c_sda_out_mode_wire ? (i2c_sda_out_wire ? 1'bZ : 0) : 1'bZ;
     assign JA[5] = i2c_sda_out_wire;
     
-    assign JA [1] = i2c_sda_out_wire;
-    assign JA [2] = i2c_sda_out_mode_wire;
-    assign JA [3] = i2c_scl_out_wire;
+    wire [3:0] state_wire;
+    //assign JA [0] = state_wire [0];
+    //assign JA [1] = state_wire [1];
+    //assign JA [2] = state_wire [2];
+    //assign JA [3] = state_wire [3];
+    //assign JA [1] = i2c_sda_out_wire;
+    assign JA [6] = i2c_sda_out_mode_wire;
+    //assign JA [3] = i2c_scl_out_wire;
     
     I2C_master uut (
         .clk(i2c_clk),
@@ -82,7 +92,10 @@ module sandbox
         .i2c_sda_out(i2c_sda_out_wire),
         .i2c_sda_out_mode(i2c_sda_out_mode_wire),
         .i2c_scl(i2c_scl_out_wire),
-        .done(done)
+        .done(done),
+        .out_clk(i2c_clk_dbg),
+        .state_wire(state_wire),
+        .i2c_scl_enable_wire(i2c_scl_enable_wire)
     );
 
 endmodule
