@@ -75,7 +75,8 @@ assign ready = (reset == 0) && (state == IDLE);
 (* mark_debug = "true" *) reg valid = 0;
 (* mark_debug = "true" *) reg i2c_sda_out_mode_reg = 1;
 assign i2c_sda_out_mode = i2c_sda_out_mode_reg;
-assign i2c_sda_out = i2c_sda_out_mode_reg ? i2c_sda_reg : 1'b1;
+//assign i2c_sda_out = i2c_sda_out_mode_reg ? i2c_sda_reg : 1'b1;
+assign i2c_sda_out = i2c_sda_reg;
 
 always @(posedge clk)
 begin
@@ -99,7 +100,6 @@ begin
     if (reset) begin
         st_count_enable <= 0;
         st_count <= 0;
-        done_reg <= 0;
     end
     else begin
         if ((state == IDLE) || ((state == STOP) && (done_reg != 0))) begin
@@ -125,6 +125,7 @@ begin
         saved_sub <= 0;
         saved_data <= 0;
         valid <= 0;
+        done_reg <= 0;
     end
     else begin
         case (state)
@@ -143,12 +144,14 @@ begin
             START : begin
                 i2c_sda_reg <= 0;
                 i2c_sda_out_mode_reg <= 1;
-                state <= (st_count == 3) ? STOP : START;
                 tr_count <= 7'd7;
+                if (st_count == 3) begin
+                    state <= STOP;
+                end
                 
                 dbg_clk <= 0;
             end
-            
+/*            
             TR_ADDR : begin
                 i2c_sda_out_mode_reg <= 1;
                 state <= ((tr_count == 0) && (st_count == 3)) ? TR_RW : TR_ADDR;
@@ -204,13 +207,15 @@ begin
                 i2c_sda_reg <= 0;
                 valid <= (st_count == 2) ? ~i2c_sda_in : valid;
             end
-            
+*/            
             STOP : begin
                 i2c_sda_out_mode_reg <= 1;
                 state <= STOP;//STOP;//TODO: DEBUG!!!
                 valid <= 0;
-                i2c_sda_reg <= (st_count == 1) ? 1 : i2c_sda_reg;
-                done_reg <= (st_count == 1) ? 1 : done_reg;
+                if (st_count == 1) begin
+                    i2c_sda_reg <= 1;
+                    done_reg <= 1;
+                end
             end
             
             default : state <= IDLE;

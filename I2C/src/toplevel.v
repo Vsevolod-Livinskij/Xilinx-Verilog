@@ -114,25 +114,25 @@ module toplevel
 
     wire i2c_clk;
 
-     I2C_clk_div #(.DELAY(1000)) i2c_clk_div (
+     I2C_clk_div #(.DELAY(100)) i2c_clk_div (
         .ref_clk(GCLK),
         .i2c_clk(i2c_clk)
     );
 
-    wire out_clk;
-    wire reset;
-    wire start;
+    (* mark_debug = "true" *) wire out_clk;
+    (* mark_debug = "true" *) wire reset;
+    (* mark_debug = "true" *) wire start;
     reg [6:0] addr = 7'b1101000;
     reg [7:0] sub = 8'h20;
     reg [7:0] data = 8'h0F;
-    wire ready;
-    wire i2c_sda_in;
-    wire i2c_sda_out;
-    wire i2c_sda_out_mode;
-    wire i2c_scl;
-    wire done;
-    wire [3:0] state_wire;
-    wire i2c_scl_enable_wire;
+    (* mark_debug = "true" *) wire ready;
+    (* mark_debug = "true" *) wire i2c_sda_in;
+    (* mark_debug = "true" *) wire i2c_sda_out;
+    (* mark_debug = "true" *) wire i2c_sda_out_mode;
+    (* mark_debug = "true" *) wire i2c_scl;
+    (* mark_debug = "true" *) wire done;
+    (* mark_debug = "true" *) wire [3:0] state_wire;
+    (* mark_debug = "true" *) wire i2c_scl_enable_wire;
 
     assign JA1 = i2c_clk;
     assign JA2 = out_clk;

@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="10" Path="E:/Xilinx-Verilog/I2C/I2C.xpr">
+<Project Version="7" Minor="10" Path="C:/Users/ncos/Xilinx-Verilog/I2C/I2C.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="a01891f0a569422f8bb96373f3e48d63"/>
