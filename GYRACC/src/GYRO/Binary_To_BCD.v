@@ -1,28 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: Digilent Inc.
-// Engineer: Josh Sackos
-// 
-// Create Date:    07/11/2012
-// Module Name:    Binary_To_BCD
-// Project Name: 	 PmodGYRO_Demo
-// Target Devices: Nexys3
-// Tool versions:  ISE 14.1
-// Description: This module receives a 16 bit binary value and converts it to
-//					 a packed binary coded decimal (BCD) using the shift add 3
-//					 algorithm.
-//
-//					 The output consists of 4 BCD digits as follows:
-//
-//								BCDOUT[15:12]	- Thousands place
-//								BCDOUT[11:8]	- Hundreds place
-//								BCDOUT[7:4]		- Tens place
-//								BCDOUT[3:0]		- Ones place
-//
-// Revision History: 
-// 						Revision 0.01 - File Created (Josh Sackos)
-//////////////////////////////////////////////////////////////////////////////////
-
 
 // ==============================================================================
 // 										  Define Module

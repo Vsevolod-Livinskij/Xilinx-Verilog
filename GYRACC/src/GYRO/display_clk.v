@@ -1,20 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////////////
-// Company: Digilent Inc.
-// Engineer: Andrew Skreen
-// 
-// Create Date:    08/16/2011
-// Module Name:    display_clk
-// Project Name: 	 PmodGYRO_Demo
-// Target Devices: Nexys3
-// Tool versions:  ISE 14.1
-// Description: This module is a simple clock divider that produces the clock signal
-//					 used in display controller.
-//
-// Revision History: 
-// 						Revision 0.01 - File Created (Andrew Skreen)
-//							Revision 1.00 - Added Comments and Converted to Verilog (Josh Sackos)
-//////////////////////////////////////////////////////////////////////////////////////////
 
 // ==============================================================================
 // 										  Define Module

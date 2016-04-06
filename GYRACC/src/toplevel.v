@@ -1,23 +1,5 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 19.02.2016 18:21:15
-// Design Name: 
-// Module Name: toplevelv
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
 module toplevel
     (
     GCLK,
@@ -199,48 +181,6 @@ module toplevel
         );
 
     // =============================================
-    // Pmod ACL
-    // =============================================
-    wire [15:0] acl_x;
-    wire [15:0] acl_y;
-    wire [15:0] acl_z;
-    PmodACL ACL_0
-        (
-        .CLK(GCLK),
-		.RST(BTND),
-		.SDI(JB3),
-		.SDO(JB2),
-		.SCLK(JB4),
-		.SS(JB1),
-		.x_out(acl_x),
-		.y_out(acl_y),
-		.z_out(acl_z)
-    );
-
-    wire [127:0] acl_x_str;
-    wire [127:0] acl_y_str;
-    wire [127:0] acl_z_str;
-    D2STR_D#(.len(4)) d2str_acl_x
-        (
-            .GCLK(GCLK),
-            .str(acl_x_str),
-            .d(acl_x)
-        );
-    D2STR_D#(.len(4)) d2str_acl_y
-        (
-            .GCLK(GCLK),
-            .str(acl_y_str),
-            .d(acl_y)
-        );  
-    D2STR_D#(.len(4)) d2str_acl_z
-        (
-            .GCLK(GCLK),
-            .str(acl_z_str),
-            .d(acl_z)
-        );  
-
-
-    // =============================================
     // OLED infrastructure
     // =============================================    
     wire oled_refresh_clk;
@@ -258,9 +198,9 @@ module toplevel
     end
     
     always @(posedge oled_refresh_clk) begin
-        str0 <= SW7 ? w_str_x : acl_x_str;
-        str1 <= SW7 ? w_str_y : acl_y_str;
-        str2 <= SW7 ? w_str_z : acl_z_str;
+        str0 <= w_str_x;
+        str1 <= w_str_y;
+        str2 <= w_str_z;
         str3 <= w_str_t;
     end
 endmodule
