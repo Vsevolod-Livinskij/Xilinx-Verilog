@@ -117,9 +117,9 @@ module toplevel
         .ang_x(ang_x)
         );
   
-    (* mark_debug = "true" *) wire txIdleOUT;
-    (* mark_debug = "true" *) wire txReadyOUT;
-    (* mark_debug = "true" *) wire txOUT;
+    (* mark_debug = "true" *) wire idle;
+    (* mark_debug = "true" *) wire ready;
+    (* mark_debug = "true" *) wire out;
   
     (* mark_debug = "true" *) reg [3:0] tr_count = 0;
     (* mark_debug = "true" *) reg [7:0] tr_data = 0;
@@ -127,18 +127,18 @@ module toplevel
     
     UART_TX uart_tx 
         (
-        .clockIN(GCLK),
-        .txDataIN(tr_data),
-        .txOUT(JB1),
-        .txLoadIN(1'b1),
-        .nTxResetIN(~BTNU),
-        .txIdleOUT(txIdleOUT),
-        .txReadyOUT(txReadyOUT)
+        .clk(GCLK),
+        .data_in(tr_data),
+        .out(JB1),
+        .start(1'b1),
+        .reset(~BTNU),
+        .idle(idle),
+        .ready(ready)
         );
   
     always @(posedge GCLK) begin
-        tr_count <= txReadyOUT && ~prev_ready ? tr_count + 8'd1 : tr_count;
-        prev_ready <= txReadyOUT;
+        tr_count <= ready && ~prev_ready ? tr_count + 8'd1 : tr_count;
+        prev_ready <= ready;
         case (tr_count)
             8'd0: begin
                 tr_data <= x_axis_data [7:0];
