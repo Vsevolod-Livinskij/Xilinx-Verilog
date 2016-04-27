@@ -69,14 +69,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../uart_rx.v">
+      <File Path="$PPRDIR/src/OLED/ZedboardOLED.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/src/OLED/ZedboardOLED.v">
+      <File Path="$PPRDIR/../uart_rx.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -90,14 +90,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/src/clk_div.v">
+      <File Path="$PPRDIR/src/d2str.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/src/d2str.v">
+      <File Path="$PPRDIR/src/clk_div.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -106,14 +106,6 @@
       </File>
       <File Path="$PPRDIR/src/toplevel.v">
         <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/src/ACC/format_data.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -143,7 +135,23 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/src/ACC/format_data.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/src/ACC/ssdctrl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/src/ACC/spicomponent.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -160,14 +168,6 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/src/ACC/clkdiv_5hz.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/src/ACC/spicomponent.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -192,7 +192,6 @@
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="toplevel"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -212,7 +211,7 @@
       <Filter Type="Srcs"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="toplevel"/>
+        <Option Name="TopModule" Val="PmodACL"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="SrcSet" Val="sources_1"/>
@@ -225,23 +224,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib.xml"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="blk_mem_gen_v8_3_1/hdl/blk_mem_gen_v8_3.vhd"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="blk_mem_gen_v8_3_1/hdl/blk_mem_gen_v8_3_vhsyn_rfs.vhd"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="blk_mem_gen_v8_3_1/simulation/blk_mem_gen_v8_3.vhd"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib.coe"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="synth/charLib.vhd"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="sim/charLib.vhd"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="summary.log"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib.vho"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="doc/blk_mem_gen_v8_3_changelog.txt"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib.veo"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib.mif"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib_sim_netlist.vhdl"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib_stub.v"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib_stub.vhdl"/>
-        <CompFileExtendedInfo CompFileName="charLib.xci" FileRelPathName="charLib_sim_netlist.v"/>
       </File>
       <Config>
         <Option Name="TopModule" Val="charLib"/>
@@ -332,18 +314,14 @@
     </Run>
     <Run Id="Delay_synth_1" Type="Ft3:Synth" SrcSet="Delay" Part="xc7z020clg484-1" ConstrsSet="Delay" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/Delay_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
     <Run Id="SpiCtrl_synth_1" Type="Ft3:Synth" SrcSet="SpiCtrl" Part="xc7z020clg484-1" ConstrsSet="SpiCtrl" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/SpiCtrl_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -379,9 +357,7 @@
     </Run>
     <Run Id="Delay_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="Delay" Description="Vivado Implementation Defaults" SynthRun="Delay_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -395,9 +371,7 @@
     </Run>
     <Run Id="SpiCtrl_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="SpiCtrl" Description="Vivado Implementation Defaults" SynthRun="SpiCtrl_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

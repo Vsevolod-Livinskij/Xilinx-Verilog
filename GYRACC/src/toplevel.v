@@ -141,20 +141,55 @@ module toplevel
         .ang_x(ang_x)
         );
   
-        (* mark_debug = "true" *) wire txIdleOUT;
-        (* mark_debug = "true" *) wire txReadyOUT;
-        (* mark_debug = "true" *) wire txOUT;
+    (* mark_debug = "true" *) wire txIdleOUT;
+    (* mark_debug = "true" *) wire txReadyOUT;
+    (* mark_debug = "true" *) wire txOUT;
   
+    (* mark_debug = "true" *) reg [3:0] tr_count = 0;
+    (* mark_debug = "true" *) reg [7:0] tr_data = 0;
+    (* mark_debug = "true" *) reg prev_ready = 0;
+    
     UART_TX uart_tx 
         (
         .clockIN(GCLK),
-        .txDataIN(8'hFF),
+        .txDataIN(tr_data),
         .txOUT(JB1),
-        .txLoadIN(BTND),
+        .txLoadIN(1'b1),
         .nTxResetIN(~BTNU),
         .txIdleOUT(txIdleOUT),
         .txReadyOUT(txReadyOUT)
         );
+  
+    always @(posedge GCLK) begin
+        tr_count <= txReadyOUT && ~prev_ready ? tr_count + 8'd1 : tr_count;
+        prev_ready <= txReadyOUT;
+        case (tr_count)
+            8'd0: begin
+                tr_data <= x_axis_data [7:0];
+            end
+            8'd1: begin
+                tr_data <= x_axis_data [15:8];
+            end
+            8'd2: begin
+                tr_data <= y_axis_data [7:0];
+            end
+            8'd3: begin
+                tr_data <= y_axis_data [15:8];
+            end
+            8'd4: begin
+                tr_data <= z_axis_data [7:0];
+            end
+            8'd5: begin
+                tr_data <= z_axis_data [15:8];
+            end
+            8'd6: begin
+                tr_data <= 8'b01010101;
+            end
+            8'd7: begin
+                tr_data <= 8'b01010101;
+            end
+        endcase
+    end
   
     wire [127:0] w_str_x;
     wire [127:0] w_str_y;
