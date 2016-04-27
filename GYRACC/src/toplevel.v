@@ -59,14 +59,14 @@ module toplevel
     inout wire JA9;
     inout wire JA10;    
     
-    inout wire JB1;
-    inout wire JB2;
-    inout wire JB3;
-    inout wire JB4;
-    inout wire JB7;
-    inout wire JB8;
-    inout wire JB9;
-    inout wire JB10;
+    output wire JB1;
+    output wire JB2;
+    output wire JB3;
+    output wire JB4;
+    output wire JB7;
+    output wire JB8;
+    output wire JB9;
+    output wire JB10;
 
     input wire BTNC;
     input wire BTND;
@@ -139,6 +139,21 @@ module toplevel
         .y_axis_out(y_axis_data),
         .z_axis_out(z_axis_data),
         .ang_x(ang_x)
+        );
+  
+        (* mark_debug = "true" *) wire txIdleOUT;
+        (* mark_debug = "true" *) wire txReadyOUT;
+        (* mark_debug = "true" *) wire txOUT;
+  
+    UART_TX uart_tx 
+        (
+        .clockIN(GCLK),
+        .txDataIN(8'hFF),
+        .txOUT(JB1),
+        .txLoadIN(BTND),
+        .nTxResetIN(~BTNU),
+        .txIdleOUT(txIdleOUT),
+        .txReadyOUT(txReadyOUT)
         );
   
     wire [127:0] w_str_x;
