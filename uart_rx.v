@@ -17,13 +17,13 @@ localparam HALF_BAUD_CLK_REG_VALUE = (CLOCK_FREQUENCY / BAUD_RATE / 2 - 1);
 localparam HALF_BAUD_CLK_REG_SIZE  = 64;
 
 reg [HALF_BAUD_CLK_REG_SIZE-1:0] clk_counter = 0;
-reg baud_clk       = 1'b0;
-reg [9:0] tx_reg     = 10'h001;
+reg baud_clk      = 1'b0;
+reg [9:0] tx_reg  = 10'h001;
 reg [3:0] counter = 4'h0; 
 
 assign ready = !counter[3:1];
 assign idle  = ready & (~counter[0]);
-assign out      = tx_reg[0];
+assign out   = tx_reg[0];
 
 always @(posedge clk) begin 
         if(idle & (~start)) begin
@@ -45,11 +45,11 @@ always @(posedge baud_clk or negedge reset) begin
                 tx_reg[0]  <= 1'b1;
         end
         else if(~ready) begin
-                tx_reg     <= {1'b0, tx_reg[9:1]};
+                tx_reg  <= {1'b0, tx_reg[9:1]};
                 counter <= counter - 1'b1;
         end
         else if(start) begin
-                tx_reg     <= {1'b1, data_in[7:0], 1'b0};
+                tx_reg  <= {1'b1, data_in[7:0], 1'b0};
                 counter <= 4'hA;
         end
         else begin

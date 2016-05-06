@@ -137,33 +137,33 @@ module toplevel
         );
   
     always @(posedge GCLK) begin
-        tr_count <= ready && ~prev_ready ? tr_count + 8'd1 : tr_count;
+        tr_count <= ready && ~prev_ready ? (tr_count == 11 ? 0 : tr_count + 4'd1) : tr_count;
         prev_ready <= ready;
+        tr_data <= x_axis_data [7:0];
+/*
         case (tr_count)
-            8'd0: begin
+            4'd0: begin
                 tr_data <= x_axis_data [7:0];
             end
-            8'd1: begin
+            4'd1: begin
                 tr_data <= x_axis_data [15:8];
             end
-            8'd2: begin
+            4'd2: begin
                 tr_data <= y_axis_data [7:0];
             end
-            8'd3: begin
+            4'd3: begin
                 tr_data <= y_axis_data [15:8];
             end
-            8'd4: begin
+            4'd4: begin
                 tr_data <= z_axis_data [7:0];
             end
-            8'd5: begin
+            4'd5: begin
                 tr_data <= z_axis_data [15:8];
             end
-            8'd6: begin
-                tr_data <= 8'b01010101;
-            end
-            8'd7: begin
+            default: begin
                 tr_data <= 8'b01010101;
             end
         endcase
+*/
     end
 endmodule
